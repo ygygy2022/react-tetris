@@ -1,3 +1,14 @@
+/*
+  This file defines the tetrominoes used in a Tetris game, outlining their shapes and colors.
+
+  - `TETROMINOS`: An object containing definitions for all the tetrominoes in the game. Each tetromino is represented by a unique letter, and includes a `shape` (defined as a 2D array) and a `color` (defined as an RGB string).
+    - Key "0" is a special placeholder, potentially used for representing empty spaces or other purposes.
+  
+  - `randomTetromino`: A function that randomly selects and returns a tetromino from the `TETROMINOS` object. It is used to generate random tetrominoes during the gameplay.
+  
+  Together, these components form the core definitions for the tetrominoes within a Tetris game, allowing for the rendering and random selection of the game's pieces.
+*/
+
 export const TETROMINOS = {
   0: {
     shape: [[0]],
