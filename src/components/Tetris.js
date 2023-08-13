@@ -7,7 +7,7 @@ import { StyledTetrisWrapper, StyledTetris } from "./styles/StyledTetris";
 import Stage from "./Stage";
 import Display from "./Display";
 import StartButton from "./StartButton";
-import { createStage } from "../gameHelpers"; // This is a function that creates a 2D array of 12 arrays with 20 elements each, all of which are 0s.
+import { createStage, checkCollision } from "../gameHelpers"; // This is a function that creates a 2D array of 12 arrays with 20 elements each, all of which are 0s.
 import { usePlayer } from "../hooks/usePlayer";
 import { useStage } from "../hooks/useStage";
 // Tetris component is the main component that will render the game
@@ -20,18 +20,31 @@ const Tetris = () => {
   // player is the tetromino that is falling down the grid
   const [player, updatePlayerPos, resetPlayer] = usePlayer();
   // stage is the grid that the tetrominos will be placed on
-  const [stage, setStage] = useStage(player);
+  const [stage, setStage] = useStage(player, resetPlayer);
   // console.log("re-render");
   console.log("re-render");
 
   // This function will move the tetromino left or right
   const movePlayer = (dir) => {
-    updatePlayerPos({ x: dir, y: 0 });
+    if (!checkCollision(player, stage, { x: dir, y: 0 })) {
+      updatePlayerPos({ x: dir, y: 0 });
+    }
   };
 
   // This function will drop the tetromino down one row
   const drop = () => {
-    updatePlayerPos({ x: 0, y: 1, collided: false });
+    if (!checkCollision(player, stage, { x: 0, y: 1 })) {
+      updatePlayerPos({ x: 0, y: 1, collided: false });
+    } else {
+      // If the tetromino has collided with another tetromino or the bottom of the grid
+      // Game Over
+      if (player.pos.y < 1) {
+        console.log("GAME OVER!!!");
+        setGameOver(true);
+        setDropTime(null);
+      }
+      updatePlayerPos({ x: 0, y: 0, collided: true });
+    }
   };
 
   // This function will drop the tetromino down one row when the down arrow key is pressed
@@ -61,6 +74,7 @@ const Tetris = () => {
   const startGame = () => {
     // Reset everything
     setStage(createStage());
+    setGameOver(false);
     resetPlayer();
   };
 
