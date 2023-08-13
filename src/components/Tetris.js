@@ -18,7 +18,7 @@ const Tetris = () => {
   // gameOver is a boolean that will be set to true when the game is over
   const [gameOver, setGameOver] = React.useState(false);
   // player is the tetromino that is falling down the grid
-  const [player, updatePlayerPos, resetPlayer] = usePlayer();
+  const [player, updatePlayerPos, resetPlayer, playerRotate] = usePlayer();
   // stage is the grid that the tetrominos will be placed on
   const [stage, setStage] = useStage(player, resetPlayer);
   // console.log("re-render");
@@ -54,6 +54,7 @@ const Tetris = () => {
 
   // move is a callback function that will be called when a key is pressed
   const move = ({ keyCode }) => {
+    // If the game is not over
     if (!gameOver) {
       // Left arrow key
       if (keyCode === 37) {
@@ -66,6 +67,14 @@ const Tetris = () => {
       // Down arrow key
       else if (keyCode === 40) {
         dropPlayer();
+      }
+      // A key (rotate left)
+      else if (keyCode === 65) {
+        playerRotate(stage, -1);
+      }
+      // D key (rotate right)
+      else if (keyCode === 68) {
+        playerRotate(stage, 1);
       }
     }
   };
