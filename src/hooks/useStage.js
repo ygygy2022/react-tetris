@@ -3,8 +3,27 @@ import { createStage } from "../gameHelpers";
 
 export const useStage = (player, resetPlayer) => {
   const [stage, setStage] = useState(createStage());
+  const [rowsCleared, setRowsCleared] = useState(0);
 
+  // useEffect is used to update the stage
   useEffect(() => {
+    setRowsCleared(0);
+
+    const sweepRows = (newStage) =>
+      newStage.reduce((acc, row) => {
+        // If there is no 0 in the row, then the row is full
+        if (row.findIndex((cell) => cell[0] === 0) === -1) {
+          // Add 1 to rowsCleared
+          setRowsCleared((prev) => prev + 1);
+          // Add a new row of 0s to the top of the stage
+          acc.unshift(new Array(newStage[0].length).fill([0, "clear"]));
+          return acc;
+        }
+        // If the row is not full, then add the row to the accumulator
+        acc.push(row);
+        return acc;
+      }, []);
+
     const updateStage = (prevStage) => {
       // First flush the stage
       const newStage = prevStage.map((row) =>
@@ -25,6 +44,7 @@ export const useStage = (player, resetPlayer) => {
       // Then check if we collided
       if (player.collided) {
         resetPlayer();
+        return sweepRows(newStage);
       }
 
       return newStage;
