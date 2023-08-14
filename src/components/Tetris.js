@@ -21,7 +21,8 @@ const Tetris = () => {
   // gameOver is a boolean that will be set to true when the game is over
   const [gameOver, setGameOver] = React.useState(false);
   // player is the tetromino that is falling down the grid
-  const [player, updatePlayerPos, resetPlayer, playerRotate] = usePlayer();
+  const [player, updatePlayerPos, resetPlayer, playerRotate, nextTetromino] =
+    usePlayer();
   // stage is the grid that the tetrominos will be placed on
   const [stage, setStage, rowsCleared] = useStage(player, resetPlayer);
   // score, rows, and level are the game stats
@@ -142,7 +143,7 @@ const Tetris = () => {
               <Display text={`Rows: ${rows}`} />
               <Display text={`Level: ${level}`} />
 
-              <Display text="Next block" />
+              <Display text={`Next Block: ${nextTetromino}`} />
             </div>
           )}
           <StartButton callback={startGame} />
