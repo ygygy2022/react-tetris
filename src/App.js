@@ -1,9 +1,9 @@
 import React from "react";
-import Tetris from "./components/Tetris";
+import GamePages from "./components/GamePages";
 
 const App = () => (
   <div className="App">
-    <Tetris />
+    <GamePages />
   </div>
 );
 
