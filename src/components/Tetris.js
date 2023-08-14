@@ -7,6 +7,9 @@ import { StyledTetrisWrapper, StyledTetris } from "./styles/StyledTetris";
 import Stage from "./Stage";
 import Display from "./Display";
 import StartButton from "./StartButton";
+// Custom Hooks
+import { useGameStatus } from "../hooks/useGameStatus";
+import { useInterval } from "../hooks/useInterval";
 import { createStage, checkCollision } from "../gameHelpers"; // This is a function that creates a 2D array of 12 arrays with 20 elements each, all of which are 0s.
 import { usePlayer } from "../hooks/usePlayer";
 import { useStage } from "../hooks/useStage";
@@ -20,7 +23,11 @@ const Tetris = () => {
   // player is the tetromino that is falling down the grid
   const [player, updatePlayerPos, resetPlayer, playerRotate] = usePlayer();
   // stage is the grid that the tetrominos will be placed on
-  const [stage, setStage] = useStage(player, resetPlayer);
+  const [stage, setStage, rowsCleared] = useStage(player, resetPlayer);
+  // score, rows, and level are the game stats
+  const [score, setScore, rows, setRows, level, setLevel] =
+    useGameStatus(rowsCleared);
+
   // console.log("re-render");
   console.log("re-render");
 
@@ -33,6 +40,14 @@ const Tetris = () => {
 
   // This function will drop the tetromino down one row
   const drop = () => {
+    // Increase level when player has cleared 10 rows
+    if (rows > (level + 1) * 15) {
+      setLevel((prev) => prev + 1);
+      // Also increase speed
+      setDropTime(1000 / (level + 1) + 200 / (level + 1));
+    }
+
+    // If the tetromino has not collided with another tetromino or the bottom of the grid
     if (!checkCollision(player, stage, { x: 0, y: 1 })) {
       updatePlayerPos({ x: 0, y: 1, collided: false });
     } else {
@@ -47,10 +62,27 @@ const Tetris = () => {
     }
   };
 
+  const keyUp = ({ keyCode }) => {
+    // If the game is not over
+    if (!gameOver) {
+      // Down arrow key
+      if (keyCode === 40) {
+        //console.log("interval on");
+        setDropTime(1000 / (level + 1) + 200 / (level + 1));
+      }
+    }
+  };
+
   // This function will drop the tetromino down one row when the down arrow key is pressed
   const dropPlayer = () => {
+    //console.log(dropTime);
+    setDropTime(null);
     drop();
   };
+  // dropTime is the time it takes for the tetromino to drop one row
+  useInterval(() => {
+    drop();
+  }, dropTime);
 
   // move is a callback function that will be called when a key is pressed
   const move = ({ keyCode }) => {
@@ -83,12 +115,21 @@ const Tetris = () => {
   const startGame = () => {
     // Reset everything
     setStage(createStage());
+    setDropTime(1200);
     setGameOver(false);
     resetPlayer();
+    setLevel(0);
+    setRows(0);
+    setScore(0);
   };
 
   return (
-    <StyledTetrisWrapper role="button" tabIndex="0" onKeyDown={(e) => move(e)}>
+    <StyledTetrisWrapper
+      role="button"
+      tabIndex="0"
+      onKeyDown={(e) => move(e)}
+      onKeyUp={keyUp}
+    >
       <StyledTetris>
         <Stage stage={stage} />
         <aside>
@@ -97,12 +138,22 @@ const Tetris = () => {
             <Display gameOver={gameOver} text="Game Over" />
           ) : (
             <div>
-              <Display text="Score" />
-              <Display text="Rows" />
-              <Display text="Level" />
+              <Display text={`Score: ${score}`} />
+              <Display text={`Rows: ${rows}`} />
+              <Display text={`Level: ${level}`} />
+
+              <Display text="Next block" />
             </div>
           )}
           <StartButton callback={startGame} />
+        </aside>
+        <aside>
+          <div>
+            <Display text="normal game" />
+            <Display text="Player: Yu Guo" />
+            <Display text="Group number: 12" />
+            <Display text="Student1:S5283828 Yu Guo Student2:s5049158 maisi hao" />
+          </div>
         </aside>
       </StyledTetris>
     </StyledTetrisWrapper>
