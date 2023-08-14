@@ -11,7 +11,7 @@ export const useGameStatus = (rowsCleared) => {
   // useCallback is used to prevent infinite loop
   const calcScore = useCallback(() => {
     if (rowsCleared > 0) {
-      let remainingRows = rowsCleared * 5;
+      let remainingRows = rowsCleared / 2;
       let newScore = 0; // Temporary variable to store the score
 
       // Loop through the rows and calculate score
