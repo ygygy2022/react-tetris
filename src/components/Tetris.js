@@ -21,11 +21,12 @@ const Tetris = () => {
   // gameOver is a boolean that will be set to true when the game is over
   const [gameOver, setGameOver] = React.useState(false);
   // player is the tetromino that is falling down the grid
-  const [player, updatePlayerPos, resetPlayer, playerRotate] = usePlayer();
+  const [player, nextPlayer, updatePlayerPos, resetPlayer, playerRotate] =
+    usePlayer();
   // stage is the grid that the tetrominos will be placed on
   const [stage, setStage, rowsCleared] = useStage(player, resetPlayer);
   // preview is the tetromino that will be displayed in the preview box
-  const [preview, setPreview] = usePreviewStage(player);
+  const [preview, setPreview] = usePreviewStage(nextPlayer);
 
   // score, rows, and level are the game stats
   const [score, setScore, rows, setRows, level, setLevel] =
@@ -118,7 +119,7 @@ const Tetris = () => {
   const startGame = () => {
     // Reset everything
     setStage(createStage());
-    setPreview(createStage(4, 4));
+    setPreview(createStage(5, 4));
     setDropTime(1200);
     setGameOver(false);
     resetPlayer();

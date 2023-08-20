@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { createStage } from "../gameHelpers";
 
 export const usePreviewStage = (player) => {
-  const [previewStage, setPreviewStage] = useState(createStage(4, 4)); // Assuming the preview box is 4x4
+  const [previewStage, setPreviewStage] = useState(createStage(5, 4)); // Assuming the preview box is 4x4
   useEffect(() => {
     const updatePreviewStage = (prevStage) => {
       const newStage = prevStage.map((row) =>
@@ -21,7 +21,7 @@ export const usePreviewStage = (player) => {
     };
 
     setPreviewStage((prev) => updatePreviewStage(prev));
-  }, [player.tetromino]); // This will run whenever the next tetromino changes
+  }, [player]); // This will run whenever the next tetromino changes
 
   return [previewStage, setPreviewStage];
 };
