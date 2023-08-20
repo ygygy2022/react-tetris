@@ -2,7 +2,6 @@ import React from "react";
 
 // Styled Components
 import { StyledTetrisWrapper, StyledTetris } from "./styles/StyledTetris";
-
 // Components
 import Stage from "./Stage";
 import Display from "./Display";
@@ -131,6 +130,14 @@ const Tetris = () => {
       onKeyUp={keyUp}
     >
       <StyledTetris>
+        <aside>
+          <div>
+            <Display text="normal game" />
+            <Display text="Player: Yu Guo" />
+            <Display text="Group number: 12" />
+            <Display text="Student1:S5283828 Yu Guo Student2:s5049158 maisi hao" />
+          </div>
+        </aside>
         <Stage stage={stage} />
         <aside>
           {/* If the game is over, display the game over message, otherwise display the score, rows, and level. */}
@@ -145,14 +152,6 @@ const Tetris = () => {
             </div>
           )}
           <StartButton callback={startGame} />
-        </aside>
-        <aside>
-          <div>
-            <Display text="normal game" />
-            <Display text="Player: Yu Guo" />
-            <Display text="Group number: 12" />
-            <Display text="Student1:S5283828 Yu Guo Student2:s5049158 maisi hao" />
-          </div>
         </aside>
       </StyledTetris>
     </StyledTetrisWrapper>
