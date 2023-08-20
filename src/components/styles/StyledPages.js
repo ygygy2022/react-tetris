@@ -76,4 +76,37 @@ export const StyledPage = styled.div`
     font-weight: bold;
     color: #ffcc00;
   }
+
+  select,
+  input[type="range"] {
+    width: 100%;
+    margin: 20px auto;
+    padding: 5px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1.2rem;
+    outline: none;
+  }
+
+  select:focus,
+  input[type="range"]:focus {
+    box-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
+  }
+
+  input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 15px;
+    height: 15px;
+    background-color: rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    cursor: pointer;
+  }
+
+  input[type="range"]::-moz-range-thumb {
+    width: 15px;
+    height: 15px;
+    background-color: rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    cursor: pointer;
+  }
 `;

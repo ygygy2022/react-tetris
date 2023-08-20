@@ -14,10 +14,11 @@ const WelcomePage = ({ onStartGame, onStartScore, onStartConfigure }) => {
             Start Game
           </StyledStartButton>
           <StyledStartButton onClick={onStartScore}>Score</StyledStartButton>
-          <StyledStartButton>Exit</StyledStartButton>
+
           <StyledStartButton onClick={onStartConfigure}>
             Configure
           </StyledStartButton>
+          <StyledStartButton>Close</StyledStartButton>
         </StyledPage>
       </StyledPageWrapper>
     </StyledTetrisWrapper>
