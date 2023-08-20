@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { createStage } from "../gameHelpers";
 
 export const usePreviewStage = (player) => {
-  const [previewStage, setPreviewStage] = useState(createStage(5, 5)); // Assuming the preview box is 4x4
+  const [previewStage, setPreviewStage] = useState(createStage(7, 21)); // Assuming the preview box is 4x4
   useEffect(() => {
     const updatePreviewStage = (prevStage) => {
       const newStage = prevStage.map((row) =>
