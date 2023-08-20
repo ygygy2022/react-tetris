@@ -119,7 +119,7 @@ const Tetris = () => {
   const startGame = () => {
     // Reset everything
     setStage(createStage());
-    setPreview(createStage(5, 4));
+    setPreview(createStage(7, 21));
     setDropTime(1200);
     setGameOver(false);
     resetPlayer();
@@ -142,6 +142,8 @@ const Tetris = () => {
             <Display text="Player: Yu Guo" />
             <Display text="Group number: 12" />
             <Display text="Student1:S5283828 Yu Guo Student2:s5049158 maisi hao" />
+            <Display text={`Next Tetromino:`} />
+            <Stage stage={preview} />
           </div>
         </aside>
         <Stage stage={stage} />
@@ -154,12 +156,10 @@ const Tetris = () => {
               <Display text={`Score: ${score}`} />
               <Display text={`Rows: ${rows}`} />
               <Display text={`Level: ${level}`} />
-              <Display text={`Next Tetromino`} />
             </div>
           )}
           <StartButton callback={startGame} />
         </aside>
-        <Stage stage={preview} />
       </StyledTetris>
     </StyledTetrisWrapper>
   );
