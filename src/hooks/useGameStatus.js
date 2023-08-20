@@ -29,7 +29,9 @@ export const useGameStatus = (rowsCleared) => {
       setScore((prev) => prev + newScore);
       setRows((prev) => prev + rowsCleared / 2);
     }
-  }, [level, linePoints, rowsCleared]);
+
+    setLevel(Math.floor(rows / 10));
+  }, [level, linePoints, rows, rowsCleared]);
 
   useEffect(() => {
     calcScore();
