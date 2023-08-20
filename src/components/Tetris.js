@@ -12,6 +12,7 @@ import { useInterval } from "../hooks/useInterval";
 import { createStage, checkCollision } from "../gameHelpers"; // This is a function that creates a 2D array of 12 arrays with 20 elements each, all of which are 0s.
 import { usePlayer } from "../hooks/usePlayer";
 import { useStage } from "../hooks/useStage";
+import { usePreviewStage } from "../hooks/usePreviewStage";
 // Tetris component is the main component that will render the game
 const Tetris = () => {
   // React Hooks
@@ -23,6 +24,9 @@ const Tetris = () => {
   const [player, updatePlayerPos, resetPlayer, playerRotate] = usePlayer();
   // stage is the grid that the tetrominos will be placed on
   const [stage, setStage, rowsCleared] = useStage(player, resetPlayer);
+  // preview is the tetromino that will be displayed in the preview box
+  const [preview, setPreview] = usePreviewStage(player);
+
   // score, rows, and level are the game stats
   const [score, setScore, rows, setRows, level, setLevel] =
     useGameStatus(rowsCleared);
@@ -114,6 +118,7 @@ const Tetris = () => {
   const startGame = () => {
     // Reset everything
     setStage(createStage());
+    setPreview(createStage(4, 4));
     setDropTime(1200);
     setGameOver(false);
     resetPlayer();
@@ -153,6 +158,7 @@ const Tetris = () => {
           )}
           <StartButton callback={startGame} />
         </aside>
+        <Stage stage={preview} />
       </StyledTetris>
     </StyledTetrisWrapper>
   );

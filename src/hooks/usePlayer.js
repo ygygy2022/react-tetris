@@ -11,6 +11,7 @@ export const usePlayer = () => {
     collided: false,
   });
   //
+
   const [nextTetromino, setNextTetromino] = useState(randomTetromino().shape);
 
   const rotate = (matrix, dir) => {
