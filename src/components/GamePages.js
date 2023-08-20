@@ -13,6 +13,17 @@ const GamePages = () => {
   // 0 = Welcome Page
   // 1 = Game Page
   // 2 = Score Page
+
+  const handleClose = () => {
+    const userConfirmed = window.confirm(
+      "Are you sure you want to leave this page?"
+    );
+
+    if (userConfirmed) {
+      setGamePage(0);
+    }
+  };
+
   if (gamePage === 0) {
     return (
       <div>
@@ -32,13 +43,13 @@ const GamePages = () => {
   } else if (gamePage === 2) {
     return (
       <div>
-        <ScorePage onExitGame={() => setGamePage(0)} />
+        <ScorePage onExitGame={handleClose} />
       </div>
     );
   } else if (gamePage === 3) {
     return (
       <div>
-        <ConfigurePage onExitGame={() => setGamePage(0)} />
+        <ConfigurePage onExitGame={handleClose} />
       </div>
     );
   }

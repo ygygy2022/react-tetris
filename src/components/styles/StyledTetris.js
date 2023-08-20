@@ -24,4 +24,8 @@ export const StyledTetris = styled.div`
     display: block;
     padding: 0 20px;
   }
+
+  button:hover {
+    background-color: #a0a0a0;
+  }
 `;
