@@ -32,13 +32,13 @@ const GamePages = () => {
   } else if (gamePage === 2) {
     return (
       <div>
-        <ScorePage />
+        <ScorePage onExitGame={() => setGamePage(0)} />
       </div>
     );
   } else if (gamePage === 3) {
     return (
       <div>
-        <ConfigurePage />
+        <ConfigurePage onExitGame={() => setGamePage(0)} />
       </div>
     );
   }

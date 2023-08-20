@@ -2,6 +2,15 @@ import { StyledTetrisWrapper } from "./styles/StyledTetris";
 import { StyledPageWrapper, StyledPage } from "./styles/StyledPages";
 import { StyledStartButton } from "./styles/StyledStartButton";
 const WelcomePage = ({ onStartGame, onStartScore, onStartConfigure }) => {
+  const handleClose = () => {
+    const userConfirmed = window.confirm(
+      "Are you sure you want to close this game?"
+    );
+
+    if (userConfirmed) {
+      window.close();
+    }
+  };
   return (
     <StyledTetrisWrapper>
       <StyledPageWrapper>
@@ -18,7 +27,7 @@ const WelcomePage = ({ onStartGame, onStartScore, onStartConfigure }) => {
           <StyledStartButton onClick={onStartConfigure}>
             Configure
           </StyledStartButton>
-          <StyledStartButton>Close</StyledStartButton>
+          <StyledStartButton onClick={handleClose}>Close</StyledStartButton>
         </StyledPage>
       </StyledPageWrapper>
     </StyledTetrisWrapper>

@@ -3,7 +3,7 @@ import ExitButton from "./ExitButton";
 // import css files
 import { StyledTetrisWrapper } from "./styles/StyledTetris";
 import { StyledPageWrapper, StyledPage } from "./styles/StyledPages";
-const Configure = () => {
+const Configure = ({ onExitGame }) => {
   const [gameLevel, setGameLevel] = useState(0);
   const [gameMode, setGameMode] = useState("Normal");
   const [playerMode, setPlayerMode] = useState("Player");
@@ -48,7 +48,7 @@ const Configure = () => {
             <option value="AI">AI</option>
           </select>
 
-          <ExitButton />
+          <ExitButton callback={onExitGame} />
         </StyledPage>
       </StyledPageWrapper>
     </StyledTetrisWrapper>

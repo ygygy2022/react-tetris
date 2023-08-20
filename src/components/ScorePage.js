@@ -2,7 +2,7 @@ import React from "react";
 import { StyledTetrisWrapper } from "./styles/StyledTetris";
 import { StyledPageWrapper, StyledPage } from "./styles/StyledPages";
 import ExitButton from "./ExitButton";
-const ScorePage = () => {
+const ScorePage = ({ onExitGame }) => {
   const players = [
     { name: "Alice", score: 8000 },
     { name: "Bob", score: 6000 },
@@ -34,7 +34,7 @@ const ScorePage = () => {
               ))}
             </tbody>
           </table>
-          <ExitButton />
+          <ExitButton callback={onExitGame} />
         </StyledPage>
       </StyledPageWrapper>
     </StyledTetrisWrapper>
