@@ -3,7 +3,7 @@ export const STAGE_HEIGHT = 20;
 // Game board is represented by a 2D array of cells, with each cell being represented by an array of two values: [0, 'clear'].
 export const createStage = (height = STAGE_HEIGHT, width = STAGE_WIDTH) =>
   Array.from(Array(height), () => new Array(width).fill([0, "clear"]));
-
+// Check if the tetromino collides with the game board
 export const checkCollision = (player, stage, { x: moveX, y: moveY }) => {
   for (let y = 0; y < player.tetromino.length; y += 1) {
     for (let x = 0; x < player.tetromino[y].length; x += 1) {

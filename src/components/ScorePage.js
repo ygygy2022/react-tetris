@@ -7,6 +7,15 @@ const ScorePage = ({ onExitGame }) => {
     { name: "Alice", score: 8000 },
     { name: "Bob", score: 6000 },
     { name: "Charlie", score: 7000 },
+    { name: "Alice", score: 8000 },
+    { name: "Bob", score: 6000 },
+    { name: "Charlie", score: 7000 },
+    { name: "Alice", score: 8000 },
+    { name: "Bob", score: 6000 },
+    { name: "Charlie", score: 7000 },
+    { name: "Alice", score: 8000 },
+    { name: "Bob", score: 6000 },
+    { name: "Charlie", score: 7000 },
   ];
   const [playerData] = React.useState(players);
   const sortedPlayers = playerData.sort((a, b) => b.score - a.score);

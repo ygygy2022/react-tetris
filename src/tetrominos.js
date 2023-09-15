@@ -1,3 +1,4 @@
+// this file contains the tetrominos' shape and their colors, will be used to render the tetrominos in the playfield
 export const TETROMINOS = {
   0: { shape: [[0]], color: "0, 0, 0" },
   I: {
@@ -57,7 +58,7 @@ export const TETROMINOS = {
     color: "227, 78, 78",
   },
 };
-
+// this function will return a random tetromino
 export const randomTetromino = () => {
   const tetrominos = "IJLOSTZ";
   const randTetromino =
