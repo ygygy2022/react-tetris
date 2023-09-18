@@ -140,8 +140,8 @@ const Tetris = () => {
           <div>
             <Display text="normal game" />
             <Display text="Player: Yu Guo" />
-            <Display text="Group number: 18" />
-            <Display text="Student1:S5283828 Yu Guo Student2:s5049158 maisi hao" />
+            <Display text="Group number: 18A" />
+            <Display text="Student1:S5283828 Yu Guo Student2:s5049158 maisi hao Student3:s5003833 Jiaxiang Yao" />
             <Display text={`Next Tetromino:`} />
             <Stage stage={preview} />
           </div>
