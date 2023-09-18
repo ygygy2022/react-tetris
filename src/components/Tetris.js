@@ -1,3 +1,4 @@
+// Desc: This file contains the Tetris component, which is the main component that will render the game.
 import React from "react";
 
 // Styled Components
@@ -127,15 +128,17 @@ const Tetris = () => {
     setRows(0);
     setScore(0);
   };
-
+  // The Tetris component will render the game
   return (
     <StyledTetrisWrapper
+      // The Tetris component will listen for key presses
       role="button"
       tabIndex="0"
       onKeyDown={(e) => move(e)}
       onKeyUp={keyUp}
     >
       <StyledTetris>
+        {/* The preview box will be displayed on the left side of the game. */}
         <aside>
           <div>
             <Display text="normal game" />
@@ -143,9 +146,11 @@ const Tetris = () => {
             <Display text="Group number: 18A" />
             <Display text="Student1:S5283828 Yu Guo Student2:s5049158 maisi hao Student3:s5003833 Jiaxiang Yao" />
             <Display text={`Next Tetromino:`} />
+            {/* display the next tetromino. */}
             <Stage stage={preview} />
           </div>
         </aside>
+        {/* The game will be displayed on the right side of the game. */}
         <Stage stage={stage} />
         <aside>
           {/* If the game is over, display the game over message, otherwise display the score, rows, and level. */}
@@ -158,6 +163,7 @@ const Tetris = () => {
               <Display text={`Level: ${level}`} />
             </div>
           )}
+          {/* Start button to start the game */}
           <StartButton callback={startGame} />
         </aside>
       </StyledTetris>
