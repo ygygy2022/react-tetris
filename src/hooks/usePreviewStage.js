@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
 import { createStage } from "../gameHelpers";
-
+// This custom hook is used to set up the preview stage.
 export const usePreviewStage = (player) => {
+  // This is the preview stage
   const [previewStage, setPreviewStage] = useState(createStage(7, 21)); // Assuming the preview box is 4x4
   useEffect(() => {
     const updatePreviewStage = (prevStage) => {

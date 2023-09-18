@@ -10,15 +10,15 @@ export const usePlayer = () => {
     tetromino: TETROMINOS[0].shape,
     collided: false,
   });
-  //
+  // useState is used to create a state variable for the next tetromino and setNextTetromino is used to update the next tetromino state.
   const [nextTetromino, setNextTetromino] = useState(randomTetromino().shape);
   const [nextPlayer, setNextPlayer] = useState({
     pos: { x: 0, y: 0 },
     tetromino: nextTetromino,
     collided: false,
   });
-  //
 
+  // This function will rotate the tetromino
   const rotate = (matrix, dir) => {
     // Make the rows to become cols (transpose)
     const rotatedTetro = matrix.map((_, index) =>
@@ -52,8 +52,9 @@ export const usePlayer = () => {
     }
     setPlayer(clonedPlayer);
   };
-
+  //
   const updatePlayerPos = ({ x, y, collided }) => {
+    // setPlayer is used to update the player state.
     setPlayer((prev) => ({
       ...prev,
       pos: { x: prev.pos.x + x, y: prev.pos.y + y },
@@ -62,6 +63,7 @@ export const usePlayer = () => {
   };
 
   const resetPlayer = useCallback(() => {
+    // setPlayer is used to update the player state.
     setPlayer({
       pos: { x: STAGE_WIDTH / 2 - 2, y: 0 },
       tetromino: nextPlayer.tetromino, // Use the next tetromino

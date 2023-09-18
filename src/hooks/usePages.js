@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-
+// This custom hook is used to add an event listener to the window object.
 const usePages = (gamePage, setGamePage) => {
   // This useEffect is used to add an event listener to the window object
   useEffect(() => {

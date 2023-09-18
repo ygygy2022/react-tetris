@@ -1,6 +1,8 @@
+// Desc: Custom hook to calculate the score, rows cleared and level
 import { useCallback, useState, useEffect } from "react";
 
 export const useGameStatus = (rowsCleared) => {
+  // hooks to store the score, rows cleared and level
   const [score, setScore] = useState(0);
   const [rows, setRows] = useState(0);
   const [level, setLevel] = useState(0);
@@ -29,7 +31,7 @@ export const useGameStatus = (rowsCleared) => {
       setScore((prev) => prev + newScore);
       setRows((prev) => prev + rowsCleared / 2);
     }
-
+    // setlevel based on the number of rows cleared
     setLevel(Math.floor(rows / 10));
   }, [level, linePoints, rows, rowsCleared]);
 

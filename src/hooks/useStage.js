@@ -1,14 +1,15 @@
 import { useState, useEffect } from "react";
 import { createStage } from "../gameHelpers";
-
+// This custom hook is used to set up the stage.
 export const useStage = (player, resetPlayer) => {
+  // This is the stage that will be used to render the tetrominos
   const [stage, setStage] = useState(createStage());
   const [rowsCleared, setRowsCleared] = useState(0);
 
   // useEffect is used to update the stage
   useEffect(() => {
     setRowsCleared(0);
-
+    // This function will sweep the rows that are full
     const sweepRows = (newStage) =>
       newStage.reduce((acc, row) => {
         // If there is no 0 in the row, then the row is full
