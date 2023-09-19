@@ -1,11 +1,13 @@
 // Desc: Custom hook to calculate the score, rows cleared and level
-import { useCallback, useState, useEffect } from "react";
+import { useCallback, useState, useEffect, useContext } from "react";
+import GlobalContext from "../GlobalContext";
 
 export const useGameStatus = (rowsCleared) => {
   // hooks to store the score, rows cleared and level
+  const { level, setLevel } = useContext(GlobalContext);
   const [score, setScore] = useState(0);
   const [rows, setRows] = useState(0);
-  const [level, setLevel] = useState(0);
+  //const [level, setLevel] = useState(0);
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const linePoints = [10, 30, 50, 100];
@@ -32,8 +34,8 @@ export const useGameStatus = (rowsCleared) => {
       setRows((prev) => prev + rowsCleared / 2);
     }
     // setlevel based on the number of rows cleared
-    setLevel(Math.floor(rows / 10));
-  }, [level, linePoints, rows, rowsCleared]);
+    setLevel(Math.floor(rows));
+  }, [level, linePoints, rows, rowsCleared, setLevel]);
 
   useEffect(() => {
     calcScore();

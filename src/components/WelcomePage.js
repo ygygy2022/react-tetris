@@ -2,6 +2,7 @@
 import { StyledTetrisWrapper } from "./styles/StyledTetris";
 import { StyledPageWrapper, StyledPage } from "./styles/StyledPages";
 import { StyledStartButton } from "./styles/StyledStartButton";
+
 // This is the welcome page of the game, it is the first page that the user sees when they open the game
 const WelcomePage = ({ onStartGame, onStartScore, onStartConfigure }) => {
   // when user enter ESC, it will ask user if they want to close the game

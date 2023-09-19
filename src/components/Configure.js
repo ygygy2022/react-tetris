@@ -1,12 +1,16 @@
 // Desc: Configure page for the game
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
+import GlobalContext from "../GlobalContext";
+
+// import components
 import ExitButton from "./ExitButton";
 // import css files
 import { StyledTetrisWrapper } from "./styles/StyledTetris";
 import { StyledPageWrapper, StyledPage } from "./styles/StyledPages";
 const Configure = ({ onExitGame }) => {
   // hooks
-  const [gameLevel, setGameLevel] = useState(0);
+  const { level, setLevel } = useContext(GlobalContext);
+  //const [gameLevel, setGameLevel] = useState(0);
   const [gameMode, setGameMode] = useState("Normal");
   const [playerMode, setPlayerMode] = useState("Player");
   // eslint-disable-next-line no-unused-vars
@@ -30,10 +34,10 @@ const Configure = ({ onExitGame }) => {
             type="range"
             min="0"
             max="10"
-            value={gameLevel}
-            onChange={(e) => setGameLevel(e.target.value)}
+            value={level}
+            onChange={(e) => setLevel(Number(e.target.value))}
           />
-          <div>{gameLevel}</div>
+          <div>{level}</div>
           {/* Allow user change game styles*/}
           <h2>Normal or extended game:</h2>
           <select
