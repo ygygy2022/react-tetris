@@ -9,7 +9,7 @@ import { StyledTetrisWrapper } from "./styles/StyledTetris";
 import { StyledPageWrapper, StyledPage } from "./styles/StyledPages";
 const Configure = ({ onExitGame }) => {
   // hooks
-  const { level, setLevel } = useContext(GlobalContext);
+  const { configureLevel, setConfigureLevel } = useContext(GlobalContext);
   //const [gameLevel, setGameLevel] = useState(0);
   const [gameMode, setGameMode] = useState("Normal");
   const [playerMode, setPlayerMode] = useState("Player");
@@ -34,10 +34,10 @@ const Configure = ({ onExitGame }) => {
             type="range"
             min="0"
             max="10"
-            value={level}
-            onChange={(e) => setLevel(Number(e.target.value))}
+            value={configureLevel}
+            onChange={(e) => setConfigureLevel(Number(e.target.value))}
           />
-          <div>{level}</div>
+          <div>{configureLevel}</div>
           {/* Allow user change game styles*/}
           <h2>Normal or extended game:</h2>
           <select

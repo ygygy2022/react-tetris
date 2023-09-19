@@ -4,7 +4,8 @@ import GlobalContext from "../GlobalContext";
 
 export const useGameStatus = (rowsCleared) => {
   // hooks to store the score, rows cleared and level
-  const { level, setLevel } = useContext(GlobalContext);
+  const { configureLevel } = useContext(GlobalContext);
+  const [level, setLevel] = useState(0);
   const [score, setScore] = useState(0);
   const [rows, setRows] = useState(0);
   //const [level, setLevel] = useState(0);
@@ -34,8 +35,8 @@ export const useGameStatus = (rowsCleared) => {
       setRows((prev) => prev + rowsCleared / 2);
     }
     // setlevel based on the number of rows cleared
-    setLevel(Math.floor(rows / 10) + level);
-  }, [level, linePoints, rows, rowsCleared, setLevel]);
+    setLevel(Math.floor(rows / 10) + configureLevel);
+  }, [configureLevel, level, linePoints, rows, rowsCleared]);
 
   useEffect(() => {
     calcScore();
