@@ -1,70 +1,118 @@
-# Getting Started with Create React App
+## Directory and File Structure:
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+- 📄 `tetris/.gitignore`
+- 📄 `tetris/README.md`
+- 📄 `tetris/package-lock.json`
+- 📄 `tetris/package.json`
+- 📂 public/
+  - 📄 `tetris/public/favicon.ico`
+  - 📄 `tetris/public/index.html`
+  - 📄 `tetris/public/logo192.png`
+  - 📄 `tetris/public/logo512.png`
+  - 📄 `tetris/public/manifest.json`
+  - 📄 `tetris/public/robots.txt`
+- 📂 src/
+  - 📄 `tetris/src/App.css`
+  - 📄 `tetris/src/App.js`
+  - 📄 `tetris/src/GlobalContext.js`
+  - 📄 `tetris/src/GlobalProvider.js`
+  - 📂 components/
+    - 📄 `tetris/src/components/Cell.js`
+    - 📄 `tetris/src/components/Configure.js`
+    - 📄 `tetris/src/components/Display.js`
+    - 📄 `tetris/src/components/ExitButton.js`
+    - 📄 `tetris/src/components/GamePages.js`
+    - 📄 `tetris/src/components/ScorePage.js`
+    - 📄 `tetris/src/components/Stage.js`
+    - 📄 `tetris/src/components/StartButton.js`
+    - 📄 `tetris/src/components/Tetris.js`
+    - 📄 `tetris/src/components/WelcomePage.js`
+    - 📂 styles/
+      - 📄 `tetris/src/components/styles/StyledCell.js`
+      - 📄 `tetris/src/components/styles/StyledConfigure.js`
+      - 📄 `tetris/src/components/styles/StyledDisplay.js`
+      - 📄 `tetris/src/components/styles/StyledPages.js`
+      - 📄 `tetris/src/components/styles/StyledStage.js`
+      - 📄 `tetris/src/components/styles/StyledStartButton.js`
+      - 📄 `tetris/src/components/styles/StyledTetris.js`
+  - 📂 font/
+    - 📄 `tetris/src/font/square_sans_serif_7.woff`
+  - 📄 `tetris/src/gameHelpers.js`
+  - 📂 hooks/
+    - 📄 `tetris/src/hooks/useGameStatus.js`
+    - 📄 `tetris/src/hooks/useInterval.js`
+    - 📄 `tetris/src/hooks/usePages.js`
+    - 📄 `tetris/src/hooks/usePlayer.js`
+    - 📄 `tetris/src/hooks/usePreviewStage.js`
+    - 📄 `tetris/src/hooks/useStage.js`
+  - 📂 img/
+    - 📄 `tetris/src/img/bg.png`
+  - 📄 `tetris/src/index.css`
+  - 📄 `tetris/src/index.js`
+  - 📄 `tetris/src/logo.svg`
+  - 📄 `tetris/src/reportWebVitals.js`
+  - 📄 `tetris/src/setupTests.js`
+  - 📄 `tetris/src/tetrominos.js`
+1. List of Source Code Files and Their Explanations:
+- `App.js`: Main application component that imports and renders the GamePages component.
+- `gameHelpers.js`: Contains game-related constants and helper functions, such as the game board dimensions.
+- `index.js`: Entry point for the React application. Renders the main App component and includes web vitals reporting.
+- `reportWebVitals.js`: Utility for reporting web vitals performance metrics.
+- `tetrominos.js`: Defines the shapes and colors of tetrominos used in the game.
+- `components/Cell.js`: React component representing an individual cell in the game.
+- `App.css`: Contains CSS styles for the main application component.
+- `index.css`: Base CSS styles for the application. Also loads a custom font.
+- `logo.svg`: SVG logo file.
+- `setupTests.js`: Configuration and setup file for Jest tests. Provides custom matchers for DOM nodes.
+- `components/Configure.js`: React component for game configuration, referencing the StyledTetris styled component.
+- `components/Display.js`: React component for displaying game information, styled with StyledDisplay.
+- `components/ExitButton.js`: React component for an exit button, styled with StyledStartButton.
+- `components/GamePages.js`: React component managing different game pages, including the welcome page, score page, and Tetris gameplay.
+- `components/ScorePage.js`: React component for the score page, styled with StyledTetrisWrapper and StyledPage.
+- `components/styles/StyledTetris.js`: Styled component definitions related to the Tetris game, including background styling.
+- `hooks/useGameStatus.js`: Hook for managing game status, including score, rows cleared, and level.
+- `hooks/useInterval.js`: Hook for managing intervals, used to control game tick speed and other time-dependent features.
+- `hooks/usePages.js`: Hook for managing game pages and navigation.
+- `hooks/usePlayer.js`: Hook for managing the player's tetromino, its position, and related functions.
+- `hooks/usePreviewStage.js`: Hook for managing a preview of the game stage.
+- `hooks/useStage.js`: Hook for managing the game stage, including collisions and row clearing.
 
-## Available Scripts
+2. Number of Lines:
+- `App.js`: 14 lines
+- `gameHelpers.js`: 27 lines
+- `GlobalContext.js`: 7 lines
+- `GlobalProvider.js`: 25 lines
+- `index.js`: 17 lines
+- `reportWebVitals.js`: 13 lines
+- `setupTests.js`: 5 lines
+- `tetrominos.js`: 67 lines
+- `Cell.js`: 10 lines
+- `Configure.js`: 67 lines
+- `Display.js`: 8 lines
+- `ExitButton.js`: 7 lines
+- `GamePages.js`: 67 lines
+- `ScorePage.js`: 60 lines
+- `Stage.js`: 14 lines
+- `StartButton.js`: 8 lines
+- `Tetris.js`: 174 lines
+- `WelcomePage.js`: 48 lines
+- `StyledCell.js`: 11 lines
+- `StyledConfigure.js`: 46 lines
+- `StyledDisplay.js`: 17 lines
+- `StyledPages.js`: 112 lines
+- `StyledStage.js`: 15 lines
+- `StyledStartButton.js`: 17 lines
+- `StyledTetris.js`: 31 lines
+- `useGameStatus.js`: 46 lines
+- `useInterval.js`: 22 lines
+- `usePages.js`: 27 lines
+- `usePlayer.js`: 88 lines
+- `usePreviewStage.js`: 36 lines
+- `useStage.js`: 58 lines
 
-In the project directory, you can run:
-
-### `npm start`
-
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
-
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Total lines across all source code files: 1164 lines
+3. Naming Convention:
+- Classes: PascalCase (e.g., UserAccount)
+- Objects: camelCase starting with a noun (e.g., userAccountInstance)
+- Functions: camelCase starting with a verb (e.g., getUserDetails())
+- Variables: camelCase (e.g., userName, accountNumber)
