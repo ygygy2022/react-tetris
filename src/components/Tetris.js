@@ -121,7 +121,7 @@ const Tetris = () => {
     // Reset everything
     setStage(createStage());
     setPreview(createStage(7, 21));
-    setDropTime(1200);
+    setDropTime(1000 / (level + 1) + 200 / (level + 1));
     setGameOver(false);
     resetPlayer();
     setLevel(0);
