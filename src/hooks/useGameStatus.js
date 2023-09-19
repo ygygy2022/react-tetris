@@ -34,7 +34,7 @@ export const useGameStatus = (rowsCleared) => {
       setRows((prev) => prev + rowsCleared / 2);
     }
     // setlevel based on the number of rows cleared
-    setLevel(Math.floor(rows));
+    setLevel(Math.floor(rows / 10) + level);
   }, [level, linePoints, rows, rowsCleared, setLevel]);
 
   useEffect(() => {
