@@ -1,5 +1,5 @@
 **1. List of Source Code Files and Their Explanations:**
-- 📄 `tetris/.gitignore`: Tell github what need to be commit
+- 📄 `tetris/.gitignore`: Tell github what need to be igonre when doing commit
 - 📄 `tetris/README.md`: Application introduction 
 - 📄 `tetris/package-lock.json`: necessary library and module 
 - 📄 `tetris/package.json`: necessary library and module
