@@ -15,7 +15,7 @@ React Tetris is a modern implementation of the classic Tetris game. Built with t
 **Installation**
 
     **Clone the repository:**
-        git clone https://github.com/your_username/react-tetris.git
+        git clone https://github.com/ygygy2022/react-tetris.git
     **Navigate to the project directory:**
         cd react-tetris
     **Install the dependencies:**
