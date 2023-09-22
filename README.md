@@ -1,83 +1,59 @@
-## Directory and File Structure:
-
-- 📄 `tetris/.gitignore`
-- 📄 `tetris/README.md`
-- 📄 `tetris/package-lock.json`
-- 📄 `tetris/package.json`
+**1. List of Source Code Files and Their Explanations:**
+- 📄 `tetris/.gitignore`: Tell github what need to be commit
+- 📄 `tetris/README.md`: Application introduction 
+- 📄 `tetris/package-lock.json`: necessary library and module 
+- 📄 `tetris/package.json`: necessary library and module
 - 📂 public/
-  - 📄 `tetris/public/favicon.ico`
-  - 📄 `tetris/public/index.html`
-  - 📄 `tetris/public/logo192.png`
-  - 📄 `tetris/public/logo512.png`
-  - 📄 `tetris/public/manifest.json`
-  - 📄 `tetris/public/robots.txt`
+  - 📄 `tetris/public/favicon.ico`: Game icon
+  - 📄 `tetris/public/index.html`: React component
+  - 📄 `tetris/public/logo192.png`: React component
+  - 📄 `tetris/public/logo512.png`: React component
+  - 📄 `tetris/public/manifest.json`: React component
+  - 📄 `tetris/public/robots.txt`: React component
 - 📂 src/
-  - 📄 `tetris/src/App.css`
-  - 📄 `tetris/src/App.js`
-  - 📄 `tetris/src/GlobalContext.js`
-  - 📄 `tetris/src/GlobalProvider.js`
+  - 📄 `tetris/src/App.css`: React component
+  - 📄 `tetris/src/App.js`: Main application component that imports and renders the GamePages component. 
+  - 📄 `tetris/src/GlobalContext.js`: Set for global variation 
+  - 📄 `tetris/src/GlobalProvider.js`: Provide couple of global variation for env
   - 📂 components/
-    - 📄 `tetris/src/components/Cell.js`
-    - 📄 `tetris/src/components/Configure.js`
-    - 📄 `tetris/src/components/Display.js`
-    - 📄 `tetris/src/components/ExitButton.js`
-    - 📄 `tetris/src/components/GamePages.js`
-    - 📄 `tetris/src/components/ScorePage.js`
-    - 📄 `tetris/src/components/Stage.js`
-    - 📄 `tetris/src/components/StartButton.js`
-    - 📄 `tetris/src/components/Tetris.js`
-    - 📄 `tetris/src/components/WelcomePage.js`
+    - 📄 `tetris/src/components/Cell.js`: Give each block style
+    - 📄 `tetris/src/components/Configure.js`: User interface allow user doing game setting 
+    - 📄 `tetris/src/components/Display.js`: When Game Over will be show in the Tetris Page
+    - 📄 `tetris/src/components/ExitButton.js`: A Button component for provide a styling exiting button
+    - 📄 `tetris/src/components/GamePages.js`: Main component for carraying on four main game page - Score, Configure, Tetris, Welcome
+    - 📄 `tetris/src/components/ScorePage.js`: User interface show top 10 scores of the game
+    - 📄 `tetris/src/components/Stage.js`: A component which provide game field 
+    - 📄 `tetris/src/components/StartButton.js`: A Button component for provide a styling start button
+    - 📄 `tetris/src/components/Tetris.js`: Main game function page, show game stage, UI, sidebar and allow user to do control
+    - 📄 `tetris/src/components/WelcomePage.js`: User interface 
     - 📂 styles/
-      - 📄 `tetris/src/components/styles/StyledCell.js`
-      - 📄 `tetris/src/components/styles/StyledConfigure.js`
-      - 📄 `tetris/src/components/styles/StyledDisplay.js`
-      - 📄 `tetris/src/components/styles/StyledPages.js`
-      - 📄 `tetris/src/components/styles/StyledStage.js`
-      - 📄 `tetris/src/components/styles/StyledStartButton.js`
-      - 📄 `tetris/src/components/styles/StyledTetris.js`
+      - 📄 `tetris/src/components/styles/StyledCell.js`: Provide css style for cell component
+      - 📄 `tetris/src/components/styles/StyledConfigure.js`: Provide css style for Configure component
+      - 📄 `tetris/src/components/styles/StyledDisplay.js`: Provide css style for Display component
+      - 📄 `tetris/src/components/styles/StyledPages.js`: Provide css style for all component
+      - 📄 `tetris/src/components/styles/StyledStage.js`: Provide css style for Stage component
+      - 📄 `tetris/src/components/styles/StyledStartButton.js`: Provide css style for StartButton component
+      - 📄 `tetris/src/components/styles/StyledTetris.js`: Provide css style for Tetris component
   - 📂 font/
-    - 📄 `tetris/src/font/square_sans_serif_7.woff`
-  - 📄 `tetris/src/gameHelpers.js`
+    - 📄 `tetris/src/font/square_sans_serif_7.woff`: Font style
+  - 📄 `tetris/src/gameHelpers.js`: Contains game-related constants and helper functions, such as the game board dimensions.
   - 📂 hooks/
-    - 📄 `tetris/src/hooks/useGameStatus.js`
-    - 📄 `tetris/src/hooks/useInterval.js`
-    - 📄 `tetris/src/hooks/usePages.js`
-    - 📄 `tetris/src/hooks/usePlayer.js`
-    - 📄 `tetris/src/hooks/usePreviewStage.js`
-    - 📄 `tetris/src/hooks/useStage.js`
+    - 📄 `tetris/src/hooks/useGameStatus.js`: Hook for managing game status, including score, rows cleared, and level.
+    - 📄 `tetris/src/hooks/useInterval.js`: Hook for managing intervals, used to control game tick speed and other time-dependent features.
+    - 📄 `tetris/src/hooks/usePages.js`: Hook for managing game pages and navigation.
+    - 📄 `tetris/src/hooks/usePlayer.js`: Hook for managing the player's tetromino, its position, and related functions.
+    - 📄 `tetris/src/hooks/usePreviewStage.js`: Hook for managing a preview of the game stage.
+    - 📄 `tetris/src/hooks/useStage.js`: Hook for managing the game stage, including collisions and row clearing.
   - 📂 img/
-    - 📄 `tetris/src/img/bg.png`
-  - 📄 `tetris/src/index.css`
-  - 📄 `tetris/src/index.js`
-  - 📄 `tetris/src/logo.svg`
-  - 📄 `tetris/src/reportWebVitals.js`
-  - 📄 `tetris/src/setupTests.js`
-  - 📄 `tetris/src/tetrominos.js`
-1. List of Source Code Files and Their Explanations:
-- `App.js`: Main application component that imports and renders the GamePages component.
-- `gameHelpers.js`: Contains game-related constants and helper functions, such as the game board dimensions.
-- `index.js`: Entry point for the React application. Renders the main App component and includes web vitals reporting.
-- `reportWebVitals.js`: Utility for reporting web vitals performance metrics.
-- `tetrominos.js`: Defines the shapes and colors of tetrominos used in the game.
-- `components/Cell.js`: React component representing an individual cell in the game.
-- `App.css`: Contains CSS styles for the main application component.
-- `index.css`: Base CSS styles for the application. Also loads a custom font.
-- `logo.svg`: SVG logo file.
-- `setupTests.js`: Configuration and setup file for Jest tests. Provides custom matchers for DOM nodes.
-- `components/Configure.js`: React component for game configuration, referencing the StyledTetris styled component.
-- `components/Display.js`: React component for displaying game information, styled with StyledDisplay.
-- `components/ExitButton.js`: React component for an exit button, styled with StyledStartButton.
-- `components/GamePages.js`: React component managing different game pages, including the welcome page, score page, and Tetris gameplay.
-- `components/ScorePage.js`: React component for the score page, styled with StyledTetrisWrapper and StyledPage.
-- `components/styles/StyledTetris.js`: Styled component definitions related to the Tetris game, including background styling.
-- `hooks/useGameStatus.js`: Hook for managing game status, including score, rows cleared, and level.
-- `hooks/useInterval.js`: Hook for managing intervals, used to control game tick speed and other time-dependent features.
-- `hooks/usePages.js`: Hook for managing game pages and navigation.
-- `hooks/usePlayer.js`: Hook for managing the player's tetromino, its position, and related functions.
-- `hooks/usePreviewStage.js`: Hook for managing a preview of the game stage.
-- `hooks/useStage.js`: Hook for managing the game stage, including collisions and row clearing.
+    - 📄 `tetris/src/img/bg.png`: Game background 
+  - 📄 `tetris/src/index.css`: React component
+  - 📄 `tetris/src/index.js`:  Entry point for the React application. Renders the main App component and includes web vitals reporting.
+  - 📄 `tetris/src/logo.svg`: React component
+  - 📄 `tetris/src/reportWebVitals.js`: React component
+  - 📄 `tetris/src/setupTests.js`: React component
+  - 📄 `tetris/src/tetrominos.js`: Defines the shapes and colors of tetrominos used in the game.
 
-2. Number of Lines:
+**2. Number of Lines:**
 - `App.js`: 14 lines
 - `gameHelpers.js`: 27 lines
 - `GlobalContext.js`: 7 lines
@@ -111,7 +87,7 @@
 - `useStage.js`: 58 lines
 
 Total lines across all source code files: 1164 lines
-3. Naming Convention:
+**3. Naming Convention:**
 - Classes: PascalCase (e.g., UserAccount)
 - Objects: camelCase starting with a noun (e.g., userAccountInstance)
 - Functions: camelCase starting with a verb (e.g., getUserDetails())
