@@ -118,6 +118,7 @@ React Tetris is a modern implementation of the classic Tetris game. Built with t
 - `useStage.js`: 58 lines
 
 Total lines across all source code files: 1164 lines
+
 **3. Naming Convention:**
 
 - Classes: PascalCase (e.g., useGameStatus)
@@ -126,6 +127,7 @@ Total lines across all source code files: 1164 lines
 - Variables: camelCase (e.g., gameMode, dropTime)
 
 **Contributing**
+
 Fork the repository.
 Create a new branch for your feature or bugfix.
 Make your changes.
@@ -133,4 +135,5 @@ Submit a pull request.
 All contributions are welcome!
 
 **License**
+
 React Tetris is open-source software licensed under the MIT license.
