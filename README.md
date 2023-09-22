@@ -2,10 +2,15 @@
 React Tetris is a modern implementation of the classic Tetris game. Built with the power of React, it offers a smooth and responsive gaming experience right in your browser.
 
 **Features**
+
     Classic Tetris gameplay
+    
     Responsive design - play on desktop or mobile
+    
     Score tracking
+    
     Multiple difficulty levels
+    
     Pause and resume game functionality
 **Installation**
     **Clone the repository:**
