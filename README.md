@@ -13,15 +13,19 @@ React Tetris is a modern implementation of the classic Tetris game. Built with t
     
     Pause and resume game functionality
 **Installation**
+
     **Clone the repository:**
         git clone https://github.com/your_username/react-tetris.git
     **Navigate to the project directory:**
         cd react-tetris
     **Install the dependencies:**
         npm install
+        
 **Start the development server:**
     npm start
+
 **The game will be available at http://localhost:3000.**
+
 **Usage**
 **1. List of Source Code Files and Their Explanations:**
 
