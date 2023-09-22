@@ -1,36 +1,23 @@
-Introduction
+**Introduction**
 React Tetris is a modern implementation of the classic Tetris game. Built with the power of React, it offers a smooth and responsive gaming experience right in your browser.
 
-Features
-Classic Tetris gameplay
-Responsive design - play on desktop or mobile
-Score tracking
-Multiple difficulty levels
-Pause and resume game functionality
-Installation
-Clone the repository:
-
-bash
-Copy code
-git clone https://github.com/your_username/react-tetris.git
-Navigate to the project directory:
-
-bash
-Copy code
-cd react-tetris
-Install the dependencies:
-
-bash
-Copy code
-npm install
-Start the development server:
-
-bash
-Copy code
-npm start
-The game will be available at http://localhost:3000.
-
-Usage
+**Features**
+    Classic Tetris gameplay
+    Responsive design - play on desktop or mobile
+    Score tracking
+    Multiple difficulty levels
+    Pause and resume game functionality
+**Installation**
+    **Clone the repository:**
+        git clone https://github.com/your_username/react-tetris.git
+    **Navigate to the project directory:**
+        cd react-tetris
+    **Install the dependencies:**
+        npm install
+**Start the development server:**
+    npm start
+**The game will be available at http://localhost:3000.**
+**Usage**
 **1. List of Source Code Files and Their Explanations:**
 
 - 📄 `tetris/.gitignore`: Tell github what need to be igonre when doing commit
@@ -124,17 +111,17 @@ Usage
 Total lines across all source code files: 1164 lines
 **3. Naming Convention:**
 
-- Classes: PascalCase (e.g., UserAccount)
-- Objects: camelCase starting with a noun (e.g., userAccountInstance)
-- Functions: camelCase starting with a verb (e.g., getUserDetails())
-- Variables: camelCase (e.g., userName, accountNumber)
+- Classes: PascalCase (e.g., useGameStatus)
+- Objects: camelCase starting with a noun (e.g., StartButton)
+- Functions: camelCase starting with a verb (e.g., dropPlayer())
+- Variables: camelCase (e.g., gameMode, dropTime)
 
-Contributing
+**Contributing**
 Fork the repository.
 Create a new branch for your feature or bugfix.
 Make your changes.
 Submit a pull request.
 All contributions are welcome!
 
-License
+**License**
 React Tetris is open-source software licensed under the MIT license.
