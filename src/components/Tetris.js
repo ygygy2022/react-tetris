@@ -1,3 +1,4 @@
+//Display Tetris game on screen
 // Desc: This file contains the Tetris component, which is the main component that will render the game.
 import React from "react";
 
@@ -32,9 +33,6 @@ const Tetris = () => {
   // score, rows, and level are the game stats
   const [score, setScore, rows, setRows, level, setLevel] =
     useGameStatus(rowsCleared);
-
-  // console.log("re-render");
-  console.log("re-render");
 
   // This function will move the tetromino left or right
   const movePlayer = (dir) => {

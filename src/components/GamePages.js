@@ -59,9 +59,6 @@ const GamePages = () => {
       </div>
     );
   }
-
-  // Optional: You can return null or some fallback JSX if none of the conditions are met.
-  return null;
 };
 
 export default GamePages;
