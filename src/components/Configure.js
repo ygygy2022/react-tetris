@@ -9,9 +9,9 @@ import { StyledTetrisWrapper } from "./styles/StyledTetris";
 import { StyledPageWrapper, StyledPage } from "./styles/StyledPages";
 const Configure = ({ onExitGame }) => {
   // hooks
-  const { configureLevel, setConfigureLevel } = useContext(GlobalContext);
-  //const [gameLevel, setGameLevel] = useState(0);
-  const [gameMode, setGameMode] = useState("Normal");
+  const { configureLevel, setConfigureLevel, mode, setMode } =
+    useContext(GlobalContext);
+  // set the default value of player mode
   const [playerMode, setPlayerMode] = useState("Player");
   // eslint-disable-next-line no-unused-vars
   const [fieldSize, setFieldSize] = useState("12x20");
@@ -40,10 +40,7 @@ const Configure = ({ onExitGame }) => {
           <div>{configureLevel}</div>
           {/* Allow user change game styles*/}
           <h2>Normal or extended game:</h2>
-          <select
-            value={gameMode}
-            onChange={(e) => setGameMode(e.target.value)}
-          >
+          <select value={mode} onChange={(e) => setMode(e.target.value)}>
             <option value="Normal">Normal</option>
             <option value="Extended">Extended</option>
           </select>

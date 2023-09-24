@@ -1,6 +1,7 @@
 //Display Tetris game on screen
 // Desc: This file contains the Tetris component, which is the main component that will render the game.
-import React from "react";
+import React, { useContext } from "react";
+import GlobalContext from "../GlobalContext";
 
 // Styled Components
 import { StyledTetrisWrapper, StyledTetris } from "./styles/StyledTetris";
@@ -22,14 +23,15 @@ const Tetris = () => {
   const [dropTime, setDropTime] = React.useState(null);
   // gameOver is a boolean that will be set to true when the game is over
   const [gameOver, setGameOver] = React.useState(false);
+  // Global Context Hooks for game mode
+  const { mode } = useContext(GlobalContext);
   // player is the tetromino that is falling down the grid
   const [player, nextPlayer, updatePlayerPos, resetPlayer, playerRotate] =
-    usePlayer();
+    usePlayer(mode);
   // stage is the grid that the tetrominos will be placed on
   const [stage, setStage, rowsCleared] = useStage(player, resetPlayer);
   // preview is the tetromino that will be displayed in the preview box
   const [preview, setPreview] = usePreviewStage(nextPlayer);
-
   // score, rows, and level are the game stats
   const [score, setScore, rows, setRows, level, setLevel] =
     useGameStatus(rowsCleared);
@@ -139,7 +141,7 @@ const Tetris = () => {
         {/* The preview box will be displayed on the left side of the game. */}
         <aside>
           <div>
-            <Display text="normal game" />
+            <Display text={mode + " Mode"} />
             <Display text="Player: Yu Guo" />
             <Display text="Group number: 18A" />
             <Display text="Student1:S5283828 Yu Guo Student2:s5049158 maisi hao Student3:s5003833 Jiaxiang Yao" />

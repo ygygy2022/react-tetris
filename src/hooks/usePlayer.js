@@ -1,9 +1,13 @@
 import { useState, useCallback } from "react";
-
-import { TETROMINOS, randomTetromino } from "../tetrominos";
+import {
+  TETROMINOS,
+  randomTetromino,
+  randomExtendedTetromino,
+} from "../tetrominos";
 import { STAGE_WIDTH, checkCollision } from "../gameHelpers";
+
 // userPlayer is a custom hook that will be used to manage the player state.
-export const usePlayer = () => {
+export const usePlayer = (mode = "1") => {
   // useState is used to create a state variable for the player and setPlayer is used to update the player state.
   const [player, setPlayer] = useState({
     pos: { x: 0, y: 0 },
@@ -11,7 +15,12 @@ export const usePlayer = () => {
     collided: false,
   });
   // useState is used to create a state variable for the next tetromino and setNextTetromino is used to update the next tetromino state.
-  const [nextTetromino, setNextTetromino] = useState(randomTetromino().shape);
+  const [nextTetromino, setNextTetromino] = useState(
+    //exchange game mode here
+    mode === "Normal"
+      ? randomTetromino().shape
+      : randomExtendedTetromino().shape
+  );
   const [nextPlayer, setNextPlayer] = useState({
     pos: { x: 0, y: 0 },
     tetromino: nextTetromino,
@@ -69,13 +78,17 @@ export const usePlayer = () => {
       tetromino: nextPlayer.tetromino, // Use the next tetromino
       collided: false,
     });
-    setNextTetromino(randomTetromino().shape);
+    setNextTetromino(
+      mode === "Normal"
+        ? randomTetromino().shape
+        : randomExtendedTetromino().shape
+    );
     setNextPlayer({
       pos: { x: 0, y: 0 },
       tetromino: nextTetromino,
       collided: false,
     }); // Set the next tetromino
-  }, [nextPlayer, nextTetromino]);
+  }, [mode, nextPlayer.tetromino, nextTetromino]);
 
   return [
     player,
