@@ -1,11 +1,13 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { createStage } from "../gameHelpers";
+import GlobalContext from "../GlobalContext";
 // This custom hook is used to set up the stage.
 export const useStage = (player, resetPlayer) => {
   // This is the stage that will be used to render the tetrominos
-  const [stage, setStage] = useState(createStage());
-  const [rowsCleared, setRowsCleared] = useState(0);
+  const { height, width } = useContext(GlobalContext);
+  const [stage, setStage] = useState(createStage(height, width));
 
+  const [rowsCleared, setRowsCleared] = useState(0);
   // useEffect is used to update the stage
   useEffect(() => {
     setRowsCleared(0);

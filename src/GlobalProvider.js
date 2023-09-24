@@ -4,6 +4,8 @@ import React, { useState } from "react";
 import GlobalContext from "./GlobalContext";
 
 export const GlobalProvider = ({ children }) => {
+  const [height, setHeight] = useState(20);
+  const [width, setWidth] = useState(12);
   const [configureLevel, setConfigureLevel] = useState(0);
   const [mode, setMode] = useState("Normal");
 
@@ -14,6 +16,10 @@ export const GlobalProvider = ({ children }) => {
         setConfigureLevel,
         mode,
         setMode,
+        height,
+        setHeight,
+        width,
+        setWidth,
       }}
     >
       {children}

@@ -24,7 +24,7 @@ const Tetris = () => {
   // gameOver is a boolean that will be set to true when the game is over
   const [gameOver, setGameOver] = React.useState(false);
   // Global Context Hooks for game mode
-  const { mode } = useContext(GlobalContext);
+  const { mode, height, width } = useContext(GlobalContext);
   // player is the tetromino that is falling down the grid
   const [player, nextPlayer, updatePlayerPos, resetPlayer, playerRotate] =
     usePlayer(mode);
@@ -119,7 +119,7 @@ const Tetris = () => {
   // This function will start the game
   const startGame = () => {
     // Reset everything
-    setStage(createStage());
+    setStage(createStage(height, width));
     setPreview(createStage(7, 21));
     setDropTime(1000 / (level + 1) + 200 / (level + 1));
     setGameOver(false);
