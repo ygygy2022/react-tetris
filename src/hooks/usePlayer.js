@@ -97,5 +97,6 @@ export const usePlayer = (mode = "1") => {
     resetPlayer,
     playerRotate,
     nextTetromino,
+    rotate,
   ];
 };

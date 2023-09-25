@@ -21,8 +21,7 @@ const Configure = ({ onExitGame }) => {
   } = useContext(GlobalContext);
   // set the default value of player mode
   const [playerMode, setPlayerMode] = useState("Player");
-  // eslint-disable-next-line no-unused-vars
-  const [fieldSize, setFieldSize] = useState("12x20");
+
   // This is the JSX that will be rendered
   return (
     <StyledTetrisWrapper>
