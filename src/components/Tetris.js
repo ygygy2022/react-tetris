@@ -19,6 +19,8 @@ import { usePreviewStage } from "../hooks/usePreviewStage";
 // Tetris component is the main component that will render the game
 const Tetris = () => {
   // React Hooks
+  // username is the username of the player
+  const [username, setUsername] = React.useState("default");
   // dropTime is the time it takes for the tetromino to drop one row
   const [dropTime, setDropTime] = React.useState(null);
   // gameOver is a boolean that will be set to true when the game is over
@@ -115,7 +117,11 @@ const Tetris = () => {
       }
     }
   };
-
+  // only run once on mount for updating username
+  React.useEffect(() => {
+    const enteredUsername = window.prompt("请输入您的用户名:");
+    setUsername(enteredUsername);
+  }, []);
   // This function will start the game
   const startGame = () => {
     // Reset everything
@@ -142,7 +148,7 @@ const Tetris = () => {
         <aside>
           <div>
             <Display text={mode + " Mode"} />
-            <Display text="Player: Yu Guo" />
+            <Display text={"Player: " + username} />
             <Display text="Group number: 18A" />
             <Display text="Student1:S5283828 Yu Guo Student2:s5049158 maisi hao Student3:s5003833 Jiaxiang Yao" />
             <Display text={`Next Tetromino:`} />

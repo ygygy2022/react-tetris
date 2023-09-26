@@ -25,6 +25,7 @@ const GamePages = () => {
       setGamePage(0);
     }
   };
+
   // This is the JSX that will be rendered
   // If the gamePage state is 0, render the WelcomePage component
   if (gamePage === 0) {
