@@ -16,7 +16,7 @@ export const useGameStatus = (rowsCleared) => {
   // useCallback is used to prevent infinite loop
   const calcScore = useCallback(() => {
     if (rowsCleared > 0) {
-      let remainingRows = rowsCleared / 2;
+      let remainingRows = rowsCleared;
       let newScore = 0; // Temporary variable to store the score
 
       // Loop through the rows and calculate score
@@ -32,10 +32,10 @@ export const useGameStatus = (rowsCleared) => {
 
       // Update the total score and rows cleared outside the loop
       setScore((prev) => prev + newScore);
-      setRows((prev) => prev + rowsCleared / 2);
+      setRows((prev) => prev + rowsCleared);
     }
     // setlevel based on the number of rows cleared
-    setLevel(Math.floor(rows / 10) + configureLevel);
+    setLevel(Math.floor(rows) + configureLevel);
   }, [configureLevel, level, linePoints, rows, rowsCleared]);
 
   useEffect(() => {

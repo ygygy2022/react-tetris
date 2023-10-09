@@ -2,6 +2,7 @@
 import { StyledTetrisWrapper } from "./styles/StyledTetris";
 import { StyledPageWrapper, StyledPage } from "./styles/StyledPages";
 import { StyledStartButton } from "./styles/StyledStartButton";
+import { TitleAudioPlayer } from "./BackgroundSound";
 
 // This is the welcome page of the game, it is the first page that the user sees when they open the game
 const WelcomePage = ({ onStartGame, onStartScore, onStartConfigure }) => {
@@ -21,6 +22,7 @@ const WelcomePage = ({ onStartGame, onStartScore, onStartConfigure }) => {
       {/* This is the main wrapper for the Tetris game */}
       <StyledPageWrapper>
         <StyledPage>
+          <TitleAudioPlayer startplay={true} />
           <h1>Welcome to Tetris!</h1>
           <h2>2023 7805ICT</h2>
           {/* These are student names */}

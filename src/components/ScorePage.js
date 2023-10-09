@@ -1,29 +1,27 @@
 // Desc: This file contains the ScorePage component.
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { StyledTetrisWrapper } from "./styles/StyledTetris";
 import { StyledPageWrapper, StyledPage } from "./styles/StyledPages";
 import ExitButton from "./ExitButton";
 // ScorePage component is used to render the score page.
 const ScorePage = ({ onExitGame }) => {
-  // fake data
-  const players = [
-    { name: "Alice", score: 8000 },
-    { name: "Bob", score: 6000 },
-    { name: "Charlie", score: 7000 },
-    { name: "Alice", score: 8000 },
-    { name: "Bob", score: 6000 },
-    { name: "Charlie", score: 7000 },
-    { name: "Alice", score: 8000 },
-    { name: "Bob", score: 6000 },
-    { name: "Charlie", score: 7000 },
-    { name: "Alice", score: 8000 },
-    { name: "Bob", score: 6000 },
-    { name: "Charlie", score: 7000 },
-  ];
-  // hook to store the player data
-  const [playerData] = React.useState(players);
-  const sortedPlayers = playerData.sort((a, b) => b.score - a.score);
+  // Initialize as an empty array
+  const [playerData, setPlayerData] = useState([]);
+  // Fetch data from the server
+  useEffect(() => {
+    fetch("http://localhost:5000/scores")
+      .then((response) => response.json())
+      .then((data) => {
+        setPlayerData(data);
+      })
+      .catch((error) => {
+        console.error("Error fetching scores:", error);
+      });
+  }, []); // Empty dependency array ensures this runs once when the component mounts
 
+  const sortedPlayers = playerData
+    .sort((a, b) => b.score - a.score)
+    .slice(0, 10);
   return (
     // StyledTetrisWrapper is a styled component.
     <StyledTetrisWrapper>
@@ -41,9 +39,9 @@ const ScorePage = ({ onExitGame }) => {
             <tbody>
               {/* Display scores from high to low */}
               {sortedPlayers.map((player, index) => (
-                <tr key={player.name}>
+                <tr key={player.username}>
                   <td>{index + 1}</td>
-                  <td>{player.name}</td>
+                  <td>{player.username}</td>
                   <td>{player.score}</td>
                 </tr>
               ))}

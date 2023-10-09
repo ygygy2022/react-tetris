@@ -16,9 +16,18 @@ import { createStage, checkCollision } from "../gameHelpers"; // This is a funct
 import { usePlayer } from "../hooks/usePlayer";
 import { useStage } from "../hooks/useStage";
 import { usePreviewStage } from "../hooks/usePreviewStage";
+import {
+  LevelUpAudioPlayer,
+  GameOverAudioPlayer,
+  GameStartAudioPlayer,
+} from "./BackgroundSound";
+import moveFile from "../backsound/move.mp3";
 // Tetris component is the main component that will render the game
 const Tetris = () => {
   // React Hooks
+  const [startplayLevelUp, setStartPlayLevelUp] = React.useState(false);
+  const [startplayGameOver, setStartGameOver] = React.useState(false);
+  const [startplayGameStart, setStartGameStart] = React.useState(false);
   // username is the username of the player
   const [username, setUsername] = React.useState("default");
   // dropTime is the time it takes for the tetromino to drop one row
@@ -39,10 +48,37 @@ const Tetris = () => {
     useGameStatus(rowsCleared);
 
   // This function will move the tetromino left or right
+  const moveSound = new Audio(moveFile);
+  moveSound.volume = 0.2;
+  const playMoveSound = () => {
+    moveSound.currentTime = 0; // Reset sound to start
+    moveSound.play();
+  };
   const movePlayer = (dir) => {
     if (!checkCollision(player, stage, { x: dir, y: 0 })) {
       updatePlayerPos({ x: dir, y: 0 });
+      playMoveSound();
     }
+  };
+
+  const saveScoreToDB = () => {
+    fetch("http://localhost:5000/scores/add", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        username: username,
+        score: score,
+      }),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data);
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+      });
   };
 
   // This function will drop the tetromino down one row
@@ -57,13 +93,17 @@ const Tetris = () => {
     // If the tetromino has not collided with another tetromino or the bottom of the grid
     if (!checkCollision(player, stage, { x: 0, y: 1 })) {
       updatePlayerPos({ x: 0, y: 1, collided: false });
+      moveSound.play();
     } else {
       // If the tetromino has collided with another tetromino or the bottom of the grid
       // Game Over
       if (player.pos.y < 1) {
         console.log("GAME OVER!!!");
+        setStartGameOver(true);
+        setStartGameStart(false);
         setGameOver(true);
         setDropTime(null);
+        saveScoreToDB();
       }
       updatePlayerPos({ x: 0, y: 0, collided: true });
     }
@@ -117,11 +157,20 @@ const Tetris = () => {
       }
     }
   };
+  // when level up, play level up sound
+  React.useEffect(() => {
+    if (level > 0) {
+      // Avoid playing the sound at the initial load
+      setStartPlayLevelUp(true);
+      setTimeout(() => setStartPlayLevelUp(false), 1500); // Assuming the audio length is 3 seconds. Adjust as needed.
+    }
+  }, [level]);
   // only run once on mount for updating username
   React.useEffect(() => {
-    const enteredUsername = window.prompt("请输入您的用户名:");
+    const enteredUsername = window.prompt("Please entre your user name:");
     setUsername(enteredUsername);
   }, []);
+
   // This function will start the game
   const startGame = () => {
     // Reset everything
@@ -133,6 +182,8 @@ const Tetris = () => {
     setLevel(0);
     setRows(0);
     setScore(0);
+    setStartGameStart(true);
+    setStartGameOver(false);
   };
   // The Tetris component will render the game
   return (
@@ -144,7 +195,10 @@ const Tetris = () => {
       onKeyUp={keyUp}
     >
       <StyledTetris>
-        {/* The preview box will be displayed on the left side of the game. */}
+        {/* Audio players */}
+        {startplayGameOver ? <GameOverAudioPlayer startplay /> : null}
+        {startplayLevelUp ? <LevelUpAudioPlayer startplay /> : null}
+        {startplayGameStart ? <GameStartAudioPlayer startplay /> : null}
         <aside>
           <div>
             <Display text={mode + " Mode"} />
