@@ -22,6 +22,7 @@ import {
   GameStartAudioPlayer,
 } from "./BackgroundSound";
 import moveFile from "../backsound/move.mp3";
+import bestMove from "../hooks/tetrisAI";
 // Tetris component is the main component that will render the game
 const Tetris = () => {
   // React Hooks
@@ -122,12 +123,13 @@ const Tetris = () => {
 
   // This function will drop the tetromino down one row when the down arrow key is pressed
   const dropPlayer = () => {
-    //console.log(dropTime);
     setDropTime(null);
     drop();
   };
   // dropTime is the time it takes for the tetromino to drop one row
   useInterval(() => {
+    console.log(bestMove(player, stage));
+    movePlayer(bestMove(player, stage));
     drop();
   }, dropTime);
 
@@ -176,7 +178,7 @@ const Tetris = () => {
     // Reset everything
     setStage(createStage(height, width));
     setPreview(createStage(7, 21));
-    setDropTime(1000 / (level + 1) + 200 / (level + 1));
+    setDropTime(100 / (level + 1) + 200 / (level + 1));
     setGameOver(false);
     resetPlayer();
     setLevel(0);

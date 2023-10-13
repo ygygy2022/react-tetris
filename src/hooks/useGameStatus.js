@@ -11,7 +11,7 @@ export const useGameStatus = (rowsCleared) => {
   //const [level, setLevel] = useState(0);
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  const linePoints = [10, 30, 50, 100];
+  const linePoints = [100, 300, 600, 1000];
 
   // useCallback is used to prevent infinite loop
   const calcScore = useCallback(() => {

@@ -1,19 +1,11 @@
 import { checkCollision } from "../gameHelpers"; // This is a function that creates a 2D array of 12 arrays with 20 elements each, all of which are 0s.
+
 function simulatePlacement(player, stage) {
-  // 创建玩家和舞台的深拷贝，以避免修改原始状态
+  // Create a deep copy of player and stage to avoid modifying the original state
   let simulatedPlayer = JSON.parse(JSON.stringify(player));
   let simulatedStage = JSON.parse(JSON.stringify(stage));
 
-  // 将舞台中的所有整数单元转换为数组格式
-  for (let y = 0; y < simulatedStage.length; y++) {
-    for (let x = 0; x < simulatedStage[y].length; x++) {
-      if (typeof simulatedStage[y][x] === "number") {
-        simulatedStage[y][x] = [simulatedStage[y][x], "clear"];
-      }
-    }
-  }
-
-  // 模拟方块垂直下落，直到碰撞为止
+  // Simulate block falling vertically until it collides
   while (true) {
     simulatedPlayer.pos.y++;
     if (checkCollision(simulatedPlayer, simulatedStage, { x: 0, y: 0 })) {
@@ -22,7 +14,7 @@ function simulatePlacement(player, stage) {
     }
   }
 
-  // 将玩家的方块与舞台合并
+  // Merge the player's block with the stage
   for (let y = 0; y < simulatedPlayer.tetromino.length; y++) {
     for (let x = 0; x < simulatedPlayer.tetromino[y].length; x++) {
       if (simulatedPlayer.tetromino[y][x]) {
@@ -42,27 +34,31 @@ function evaluateState(stage) {
     let completedLines = 0;
 
     stage.forEach((row) => {
-      if (row.every((cell) => cell !== 0)) {
+      if (row.every((cell) => cell[0] !== 0)) {
         completedLines++;
       }
     });
-
+    console.log("completedLines:", completedLines);
     return completedLines;
   }
 
   function calculateHeight(stage) {
-    let height = 0;
-
-    for (let y = 0; y < stage.length; y++) {
-      for (let x = 0; x < stage[y].length; x++) {
-        if (stage[y][x] !== 0) {
-          height += stage.length - y; // 加上距离底部的距离
+    let totalHeight = 0;
+    console.log("stage[0].length:", stage[0].length);
+    for (let x = 0; x < stage[0].length; x++) {
+      let columnHeight = 0;
+      for (let y = stage.length - 1; y >= 0; y--) {
+        if (stage[y][x][0] !== 0 && stage[y][x][1] === "merged") {
+          console.log(`Detected merged block at column ${x}, row ${y}`); // Add this line
+          columnHeight = stage.length - y;
           break;
         }
       }
+      totalHeight += columnHeight;
     }
 
-    return height;
+    console.log("totalHeight:", totalHeight);
+    return totalHeight;
   }
 
   function countHoles(stage) {
@@ -70,23 +66,29 @@ function evaluateState(stage) {
 
     for (let y = 0; y < stage.length; y++) {
       for (let x = 0; x < stage[y].length; x++) {
-        if (stage[y][x] === 0 && (y === 0 || stage[y - 1][x] !== 0)) {
+        if (
+          stage[y][x][0] === 0 &&
+          y !== 0 &&
+          stage[y - 1][x][0] !== 0 &&
+          stage[y - 1][x][1] === "merged"
+        ) {
           holes++;
         }
       }
     }
 
+    console.log("holes:", holes);
     return holes;
   }
 
-  // 定义每个指标的权重
+  // Define the weights for each metric
   const WEIGHTS = {
     completedLines: 100,
-    height: -10,
-    holes: -50,
+    height: -5, // Decreased the penalty slightly to focus more on holes
+    holes: -150, // Increased the penalty to prioritize filling holes
   };
 
-  // 使用指标和权重计算状态的分数
+  // Calculate the score of the state using the metrics and weights
   let score =
     WEIGHTS.completedLines * countCompletedLines(stage) +
     WEIGHTS.height * calculateHeight(stage) +
@@ -95,13 +97,13 @@ function evaluateState(stage) {
   return score;
 }
 
-// 您还需要确保 countCompletedLines、calculateHeight 和 countHoles 函数在 JavaScript 中已经实现。
+// You also need to make sure the functions countCompletedLines, calculateHeight, and countHoles are implemented in JavaScript.
 
-function bestMove(player, stage) {
+export default function bestMove(player, stage) {
   let bestScore = Number.NEGATIVE_INFINITY;
   let bestPos = null;
 
-  // 遍历所有可能的水平位置
+  // Iterate over all possible horizontal positions
   for (let x = 0; x < stage[0].length - player.tetromino[0].length + 1; x++) {
     let simulatedPlayer = {
       pos: { x: x, y: player.pos.y },
@@ -111,7 +113,7 @@ function bestMove(player, stage) {
     const [, simulatedStage] = simulatePlacement(simulatedPlayer, stage);
     let score = evaluateState(simulatedStage);
 
-    // 如果此位置得分更高，则更新最佳得分和位置
+    // If the score for this position is higher, update the best score and position
     if (score > bestScore) {
       bestScore = score;
       bestPos = x;
@@ -120,5 +122,3 @@ function bestMove(player, stage) {
 
   return bestPos;
 }
-
-export { bestMove };
